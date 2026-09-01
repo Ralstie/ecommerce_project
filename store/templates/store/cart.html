@@ -1,0 +1,68 @@
+{% extends 'store/base.html' %}
+
+{% block content %}
+
+<h1>Shopping Cart</h1>
+
+{% if cart_items %}
+
+<table class="table">
+
+    <thead>
+
+        <tr>
+            <th>Product</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total</th>
+        </tr>
+
+    </thead>
+
+    <tbody>
+
+        {% for item in cart_items %}
+
+        <tr>
+
+            <td>
+                {{ item.product.name }}
+            </td>
+
+            <td>
+                R{{ item.product.price }}
+            </td>
+
+            <td>
+                {{ item.quantity }}
+            </td>
+
+            <td>
+                R{{ item.item_total }}
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+<h3>
+    Total: R{{ total }}
+</h3>
+
+<a
+    href="{% url 'checkout' %}"
+    class="btn btn-success">
+    Checkout
+</a>
+
+{% else %}
+
+<p>Your cart is empty.</p>
+
+{% endif %}
+
+{% endblock %}
